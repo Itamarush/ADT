@@ -108,14 +108,17 @@ Result SetAdptArrayAt(PAdptArray arrayToSet, int index, PElement element)
         {
             arrayToSet->elementArray[i] = NULL;
         }
+        
         arrayToSet->capacity = index + 1; 
 
-    if (arrayToSet->elementArray[index] != NULL)
-    {
-        arrayToSet->deleteFun(arrayToSet->elementArray[index]);
-    }
+        if (arrayToSet->elementArray[index] != NULL)
+        {
+            arrayToSet->deleteFun(arrayToSet->elementArray[index]);
+        }
 
     arrayToSet->elementArray[index] = arrayToSet->copyFun(element);
     return SUCCESS;
     }
+
+    return FAIL;
 }
