@@ -26,6 +26,7 @@ PAdptArray CreateAdptArray(COPY_FUNC copy, DEL_FUNC delete, PRINT_FUNC print)
     return pAdptArray;
 }
 
+
 void DeleteAdptArray(PAdptArray arrToDelete)
 {
     if (!arrToDelete)
@@ -40,9 +41,11 @@ void DeleteAdptArray(PAdptArray arrToDelete)
         {
             arrToDelete->deleteFun(arrToDelete->elementArray[i]);
         }
-        
     }
+    free(arrToDelete->elementArray);
     free(arrToDelete);
+    arrToDelete = NULL;
+
 }
 
 void PrintDB(PAdptArray arrToPrint)
@@ -97,7 +100,7 @@ Result SetAdptArrayAt(PAdptArray arrayToSet, int index, PElement element)
     if (arrayToSet->capacity <= index)
     {
 
-        arrayToSet->elementArray = (PElement*) realloc (arrayToSet->elementArray, (index+1)*sizeof(element));
+        arrayToSet->elementArray = (PElement*) realloc(arrayToSet->elementArray, (index+1)*sizeof(PElement));
 
         if (arrayToSet->elementArray == NULL)
         {
