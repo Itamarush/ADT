@@ -14,7 +14,7 @@ run: demo
 mem_test: demo
 	valgrind ./$^
 
-demo: Demo.o $(OBJECTS)
+demo: myDemo.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o demo
 
 %.o: %.c $(HEADERS)
